@@ -1,0 +1,152 @@
+﻿@model Practise.Models.Member
+@{
+    ViewData["Title"] = "人才清單";
+}
+
+<h2>人才資料編輯</h2>
+
+<form action="@Url.Action("EditAction")" method="post">
+    @Html.AntiForgeryToken()
+    <div class="box">
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">編號</span>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" aria-label="Id" name="Id" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">姓名</span>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" aria-label="Name" name="Name" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">性別</span>
+            </div>
+            <div class="col-sm">
+                @foreach (var sex in ViewBag.Data.Sexs)
+                {
+                    <div class="form-check EditChecks inlineDiv">
+                        <input class="form-check-input" type="radio" name="Sex" id="_@sex"> @sex
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">E-Mail</span>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" aria-label="E-mail" name="Email" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">手機</span>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" aria-label="CellPhone" name="CellPhone" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">電話</span>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" aria-label="Phone" name="Phone" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3  row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">工作地區</span>
+            </div>
+            <div class="col-sm">
+                @foreach (var area in ViewBag.Data.Area)
+                {
+                    <div class="form-check EditChecks inlineDiv">
+                        <input class="form-check-input" type="checkbox" name="Area" id="_@area">
+                        <label class="form-check-label" for="_@area">
+                            @area
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="input-group mb-3  row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">技術能力</span>
+            </div>
+            <div class="col-sm">
+                @foreach (var skill in ViewBag.Data.Skills)
+                {
+                    <div class="form-check EditChecks inlineDiv">
+                        <input class="form-check-input" type="checkbox" name="Skill" id="Skill_@skill">
+                        <label class="form-check-label" for="Skill_@skill">
+                            @skill
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="input-group mb-3  row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">人才狀態</span>
+            </div>
+            <div class="col-sm">
+                @foreach (var status in ViewBag.Data.Status)
+                {
+                    <div class="form-check EditChecks inlineDiv">
+                        <input class="form-check-input" type="radio" name="Status" id="_@status"> @status
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">負責人</span>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" aria-label="ReportTo" name="ReportTo" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">新增時間</span>
+            </div>
+            <div class="col-sm">
+                <input  type="datetime-local" class="form-control" aria-label="CreateTime" name="CreateTime" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">最後修改人員</span>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" aria-label="Editor" name="Editor" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">最後修改時間</span>
+            </div>
+            <div class="col-sm">
+                <input disabled type="text" class="form-control" aria-label="EditTime" name="EditTime" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="buttonGroup">
+            <div class="inlineDiv">
+                <button type="submit" class="btn btn-primary">新增</button>
+            </div>
+            <div class="inlineDiv">
+                <button type="button" id="Back" class="btn btn-light">返回</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/js/Create.js"></script>

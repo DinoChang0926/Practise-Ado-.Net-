@@ -1,0 +1,85 @@
+﻿
+.box {
+    margin-top: 20px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.CreateButton {
+    text-align: right;
+}
+
+.myInput {
+    width: 20%;
+}
+
+.col-2 {
+    width: 20%;
+}
+
+.spenTextCenter {
+    display: block;
+    text-align: center;
+    width:100%;
+}
+
+.EditChecks {
+    padding-left: 40px;
+    font-size: medium;
+}
+
+
+
+
+
+.inlineDiv {
+    margin: 10px;
+    display: inline-block;
+}
+
+@media screen and (max-width:1200px) {
+    .container {
+        text-align: center;
+    }
+
+    .box {
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .container {
+        text-align: center;
+    }
+
+    .box {
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    table.responsive {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        display: block;
+        position: relative;
+        /* sort out borders */
+    }
+
+        table.responsive tr {
+            height: 20px;
+        }
+
+        table.responsive td {
+            width: 5px;
+            word-wrap: break-word;
+        }
+}

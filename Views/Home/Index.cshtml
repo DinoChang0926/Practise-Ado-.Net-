@@ -1,0 +1,74 @@
+﻿@model List<Practise.ViewModels.MemberListViewModel>
+@{
+    ViewData["Title"] = "人才清單";
+
+}
+<div class="box">
+    <form>
+        <div class="text-center ">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">編號</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" name="Id" aria-describedby="inputGroup-sizing-sm">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">姓名</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" name="Name" aria-describedby="inputGroup-sizing-sm">
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">日期</span>
+                </div>
+                <input type="date" class="form-control" aria-label="Sizing example input" name="StartTime" aria-describedby="inputGroup-sizing-sm">
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">~</span>
+                </div>
+                <input type="date" class="form-control" aria-label="Sizing example input" name="EndTime" aria-describedby="inputGroup-sizing-sm">
+
+
+                <div class="CreateButton">
+                    <div class="Button">
+                        <button class="btn btn-primary" onclick="">查詢</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="CreateButton">
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("Create")'">新增</button>
+    </div>
+    <table class="table responsive table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">編號</th>
+                <th scope="col">姓名</th>
+                <th scope="col">E-Mail</th>
+                <th scope="col">技術能力</th>
+                <th scope="col">負責人</th>
+                <th scope="col">新增時間</th>
+                <th scope="col">最後修改人員</th>
+                <th scope="col">最後修改時間</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var member in Model)
+            {
+                <tr>
+                    <td>@member.Id</td>
+                    <td>
+                        <a href="@Url.Action("Edit",new{ Name=member.Name })">@member.Name</a>
+                    </td>
+                    <td>@member.EditTime</td>
+                    <td>@member.Skills</td>
+                    <td>@member.ReportTo</td>
+                    <td>@member.CreateTime</td>
+                    <td>@member.Editor</td>
+                    <td>@member.EditTime</td>
+                </tr>
+            }         
+        </tbody>
+    </table>
+
+</div>

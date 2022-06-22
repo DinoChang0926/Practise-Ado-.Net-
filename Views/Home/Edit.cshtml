@@ -1,0 +1,185 @@
+﻿@model Practise.Models.Member
+@{
+    ViewData["Title"] = "人才清單";
+}
+
+<h2>人才資料編輯</h2>
+
+<form action="@Url.Action("EditAction")" method="post">
+    @Html.AntiForgeryToken()
+    <div class="box">
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-2 col-lg-2 ">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">編號</span>
+            </div>
+            <div class="col col-sm col-lg-4">
+                <input type="text" class="form-control" aria-label="Id" name="Id" value="@Model.Id" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group-prepend col-sm-2 col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">姓名</span>
+            </div>
+            <div class="col-sm col-lg-4 ">
+                <input type="text" class="form-control" aria-label="Name" name="Name" value="@Model.Name" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-2 col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">性別</span>
+            </div>
+            <div class="col-sm col-lg-4">
+                @foreach (var sex in ViewBag.Data.Sexs)
+                {
+                    @if (Model.Sex.Equals(sex))
+                    {
+                        <div class="form-check EditChecks inlineDiv">
+                            <input checked class="form-check-input" type="radio" name="Sex" id="_@sex"> @sex
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-check EditChecks inlineDiv">
+                            <input class="form-check-input" type="radio" name="Sex" id="_@sex"> @sex
+                        </div>
+                    }
+                }
+            </div>    
+            <div class="input-group-prepend col-sm-2     col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">E-Mail</span>
+            </div>
+            <div class="col-sm col-lg-4">
+                <input type="text" class="form-control" aria-label="E-mail" name="Email" value="@Model.Email" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-2 col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">手機</span>
+            </div>
+            <div class="col-sm col-lg-4">
+                <input type="text" class="form-control" aria-label="CellPhone" name="CellPhone" value="@Model.CellPhone" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group-prepend col-sm-2 col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">電話</span>
+            </div>
+            <div class="col-sm col-lg-4">
+                <input type="text" class="form-control" aria-label="Phone" name="Phone" value="@Model.Phone" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="input-group mb-3  row">
+            <div class="input-group-prepend col-sm-3 col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">工作地區</span>
+            </div>
+            <div class="col-sm">
+                @foreach (var area in ViewBag.Data.Area)
+                {
+                    <div class="form-check EditChecks inlineDiv">
+                        @if (Model.Area.Contains(area))
+                        {
+                            <input class="form-check-input" checked type="checkbox" name="Area" id="_@area">
+                            <label class="form-check-label" for="_@area">
+                                @area
+                            </label>
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" name="Area" id="_@area">
+                            <label class="form-check-label" for="_@area">
+                                @area
+                            </label>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="input-group mb-3  row">
+            <div class="input-group-prepend col-sm-3 col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">技術能力</span>
+            </div>
+            <div class="col-sm">
+                @foreach (var skill in ViewBag.Data.Skills)
+                {
+                    <div class="form-check EditChecks inlineDiv">
+                        @if (Model.Skills.Contains(skill))
+                        {
+                            <input class="form-check-input" checked type="checkbox" name="Skill" value="@skill" id="Skill_@skill">
+                            <label class="form-check-label EditCheckBox" for="Skill_@skill">
+                                @skill
+                            </label>
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" name="Skill" value="@skill" id="Skill_@skill">
+                            <label class="form-check-label" for="Skill_@skill">
+                                @skill
+                            </label>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="input-group mb-3  row">
+            <div class="input-group-prepend col-sm-3 col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">人才狀態</span>
+            </div>
+            <div class="col-sm col-lg-4">
+                @foreach (var status in ViewBag.Data.Status)
+                {
+                    @if (Model.Status.Equals(status))
+                    {
+                        <div class="form-check EditChecks inlineDiv">
+                            <input checked class="form-check-input" type="radio" name="Status" id="_@status"> @status
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-check EditChecks inlineDiv">
+                            <input class="form-check-input" type="radio" name="Status" id="_@status"> @status
+                        </div>
+                    }
+                }
+            </div>     
+            <div class="input-group-prepend col-sm-3 col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">負責人</span>
+            </div>
+            <div class="col-sm col-lg-4">
+                <input type="text" class="form-control" aria-label="ReportTo" name="ReportTo" value="@Model.ReportTo" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4 col-lg-2">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">新增時間</span>
+            </div>
+            <div class="col-sm">
+                <input disabled type="text" class="form-control" aria-label="CreateTime" name="CreateTime" value="@Model.CreateTime" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="input-group mb-3 row">
+            <div class="input-group-prepend col-sm-4 col-lg-3">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">最後修改人員</span>
+            </div>
+            <div class="col-sm-8 col-lg-3">
+                <input type="text" class="form-control" aria-label="Editor" name="Editor" value="@Model.Editor" aria-describedby="basic-addon1">
+            </div>  
+            <div class="input-group-prepend col-sm-4 col-lg-3">
+                <span class="input-group-text spenTextCenter" id="basic-addon1">最後修改時間</span>
+            </div>
+            <div class="col-sm-8 col-lg-3">
+                <input  type="datetime-local" class="form-control" aria-label="EditTime" name="EditTime" value="@Model.EditTime" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="buttonGroup">
+            <div class="inlineDiv">
+                <button type="submit" class="btn btn-primary">修改</button>
+            </div>
+            <div class="inlineDiv">
+                <button type="button" id="Back" class="btn btn-light">返回</button>
+            </div>
+            <div class="inlineDiv">
+                <button type="button" id="Delete" class="btn btn-primary">刪除</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/js/Create.js"></script>
